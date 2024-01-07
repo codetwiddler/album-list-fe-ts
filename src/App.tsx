@@ -2,6 +2,8 @@ import React from 'react';
 import './styles/app.css';
 import AlbumItem from "./components/AlbumItem"; 
 
+//Fake some initial data because we don't have any persistence, yet.
+//That will require an API/repo of some flavor.
 const albums: Album[] = [
   { id: 1, title: "Reboot", artist: "Robot 1", releaseYear: 1972, genre: "Funk", rating: 3},
   { id: 2, title: "Work", artist: "Robot 2", releaseYear: 1972, genre: "Pop", rating: 4},
@@ -10,7 +12,12 @@ const albums: Album[] = [
   { id: 5, title: "Shutdown", artist: "Robot 5", releaseYear: 1972, genre: "Noise", rating: 1},
 ];
 
+//Expressing everything as const is a convention designed to make things safer and/or more predictable
+//because the functions are immutable (although the values they hold probably won't be). Also prevents
+//anything weird happening from hoisting. Also no more 'this' complications.
 const App = () => {
+  
+  //Generate an array of AlbumItem components we'll display
   const albumList = albums.map((album) => (
     <AlbumItem
       id={album.id}

@@ -1,5 +1,8 @@
 import React from "react";
 
+//Making Props a type for each component explicitly defines the
+//kind of data the component is designed to work with. Naming
+//per-component arguably enhances understanding.
 type AlbumItemProps = {
   id: number;
   title: string;
@@ -9,6 +12,9 @@ type AlbumItemProps = {
   rating?: number;
 };
 
+//We no longer want to use React.FC<Props>. React 18 removes { children: ReactNode | ReactNode[] }
+//as an inherent input because components should accept any type of children. Thus, it is important
+//to be explicit about the input types we're using from now on.
 const AlbumItem = ({
   id,
   title,
