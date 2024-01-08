@@ -1,7 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
 import "./styles/index.css";
 import App from "./App";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+  },
+]);
 
 //In React 18, ReactDOM.render method is still available,
 //but ReactDOM.createRoot is now the recommended approach
@@ -12,6 +23,6 @@ const root = ReactDOM.createRoot(
 //Previously, this might look like this: ReactDOM.render(
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
