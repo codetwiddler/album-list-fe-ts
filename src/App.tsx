@@ -1,18 +1,17 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import './styles/app.css';
 import AlbumList from "./components/AlbumList"; 
-import { albumLabelList } from "./modules";
 
 //Fake some initial data because we don't have any persistence, yet.
 //That will require an API/repo of some flavor.
 const albumFakes: Album[] = [
-  { id: 1, title: "Reboot", artist: "Robot 1", releaseYear: 1972, genre: "Funk"},
+  { id: 1, title: "Reboot", artist: "Robot 1", releaseYear: 1972, genre: "Funk", rating: 0},
   { id: 2, title: "Work", artist: "Robot 2", releaseYear: 1972, genre: "Pop", rating: 4},
   { id: 3, title: "Recharge", artist: "Robot 3", releaseYear: 1972, genre: "Electro-Swing", rating: 5},
   { id: 4, title: "Walk home", artist: "Robot 4", releaseYear: 1972, genre: "Psychedelic Circus", rating: 2},
   { id: 5, title: "Shutdown", artist: "Robot 5", releaseYear: 1972, genre: "Noise", rating: 1},
   { id: 6, title: "Silent Wave", artist: "Sound Bender", releaseYear: 1980, genre: "Ambient", rating: 2 },
-  { id: 7, title: "Echoes of the Unknown", artist: "Mystery Band", releaseYear: 1982, genre: "Rock"},
+  { id: 7, title: "Echoes of the Unknown", artist: "Mystery Band", releaseYear: 1982, genre: "Rock", rating: 0},
   { id: 8, title: "Neon Dreams", artist: "City Lights", releaseYear: 1978, genre: "Synth-Pop", rating: 5 },
   { id: 9, title: "Retro Future", artist: "Time Traveler", releaseYear: 1990, genre: "RetroWave", rating: 3 },
   { id: 10, title: "Solar Flares", artist: "Star Voyager", releaseYear: 2000, genre: "Electronic", rating: 4 },
