@@ -1,1 +1,37 @@
 /* APP STYLES */
+.albumGroup {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center
+}
+.albumList {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    max-width: 480px;
+}
+.albumItemDetails {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1rem 1rem;
+    border: 2px solid #565656;
+}
+.albumItemDetails__row {
+    width: 100%;
+    min-height: 1.5rem;
+    padding: 0.5rem 0.75rem;
+    display:flex;
+    align-items:center;
+}
+.albumItemDetails__row__lbl {
+    font-weight: 900;
+    margin-right: 0.5rem;
+}
+.albumItemDetails__row span {
+    display: inline-block;
+}
+.albumItemDetails__row .noRatingTxt {
+    color:#a7a7a7;
+}

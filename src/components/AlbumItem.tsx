@@ -1,4 +1,5 @@
 import React from "react";
+import AlbumRating from "./AlbumRating";
 
 //Making Props a type for each component explicitly defines the
 //kind of data the component is designed to work with. Naming
@@ -10,6 +11,7 @@ type AlbumItemProps = {
   releaseYear: number;
   genre: string;
   rating?: number;
+  labels: AlbumLabels; // Adding the labels prop
 };
 
 //We no longer want to use React.FC<Props>. React 18 removes { children: ReactNode | ReactNode[] }
@@ -22,27 +24,31 @@ const AlbumItem = ({
   releaseYear,
   genre,
   rating,
+  labels
 }: AlbumItemProps) => {
   const albumItemViewingTemplate = (
     <div className="albumItemDetails">
-      <div>
-        <span>{artist}</span>
+      <div className="albumItemDetails__row">
+        <span className="albumItemDetails__row__lbl">{labels.artist}</span>
+        <span className="albumItemDetails__row__txt">{artist}</span>
       </div>
-      <div>
-        <span>{title}</span>
+      <div className="albumItemDetails__row">
+        <span className="albumItemDetails__row__lbl">{labels.title}</span>
+        <span className="albumItemDetails__row__txt">{title}</span>
       </div>
-      <div>
-        <span>{releaseYear}</span>
+      <div className="albumItemDetails__row">
+        <span className="albumItemDetails__row__lbl">{labels.releaseYear}</span>
+        <span className="albumItemDetails__row__txt">{releaseYear}</span>
       </div>
-      <div>
-        <span>{genre}</span>
+      <div className="albumItemDetails__row">
+        <span className="albumItemDetails__row__lbl">{labels.genre}</span>
+        <span className="albumItemDetails__row__txt">{genre}</span>
       </div>
-      {/* gonna put a star calc component here? */}
+      <AlbumRating rating={rating}/>
     </div>
   );
-  
 
-  return <li className="albumItem">{albumItemViewingTemplate}</li>;
+  return <li className="albumItem">{albumItemViewingTemplate}</li>
 };
 
 export default AlbumItem;
