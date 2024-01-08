@@ -4,7 +4,7 @@ interface Album {
   artist: string;
   releaseYear: number;
   genre: string;
-  rating?: number | undefined; //maybe we scale to range of 1-10 someday, amiright?
+  rating: number; //maybe we scale to range of 1-10 someday, amiright?
 }
 
 //Mate our Album props with useful labels using props as keys
