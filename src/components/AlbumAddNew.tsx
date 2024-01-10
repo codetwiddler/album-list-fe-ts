@@ -6,17 +6,17 @@ type AlbumAddNewProps = {
 }
 
 const AlbumAddNew = ({ labels, onAddNewAlbum }: AlbumAddNewProps) => {
-    const [title, setTitle]             = useState("");
-    const [artist, setArtist]           = useState("");
+    const [title,       setTitle]       = useState("");
+    const [artist,      setArtist]      = useState("");
     const [releaseYear, setReleaseYear] = useState<number>(new Date().getFullYear());
-    const [genre, setGenre]             = useState("");
-    const [rating, setRating]           = useState<number>(0);
+    const [genre,       setGenre]       = useState("");
+    const [rating,      setRating]      = useState<number>(0);
 
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault();
 
         const newAlbum = {
-          id: Math.random(), // You might want a more robust method for generating IDs
+          id: Math.random(), //This needs to go away.
           title,
           artist,
           releaseYear,
@@ -26,7 +26,7 @@ const AlbumAddNew = ({ labels, onAddNewAlbum }: AlbumAddNewProps) => {
         
         onAddNewAlbum(newAlbum);
         
-        // Clear the form or provide further instructions
+        //Clear the form or provide further instructions
       };
     
       return (
