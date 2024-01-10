@@ -13,7 +13,7 @@ const AlbumRating = ({ rating }: AlbumRatingProps) => {
   const getStars = (rating: number | undefined) => {
     
     //No rating? We'll just say that
-    if (rating === undefined) {
+    if (rating === undefined || rating === 0) {
       return <span className="noRatingTxt">...no rating...</span>;
     } else {
       //Or, we generate an array of stars based on the rating
