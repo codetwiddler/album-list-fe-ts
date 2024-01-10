@@ -6,11 +6,20 @@ import {
 } from "react-router-dom";
 import "./styles/index.css";
 import App from "./App";
+import AlbumAddNew from "./components/AlbumAddNew";
+import { albumLabelList } from "./modules";
+
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    children: [
+      {
+        path: "add-album", // This will be the URL path to access AlbumAddNew
+        element: <AlbumAddNew labels={albumLabelList} onAddNewAlbum={() => ""} />,
+      },
+    ]
   },
 ]);
 
