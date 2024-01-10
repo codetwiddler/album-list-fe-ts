@@ -8,22 +8,30 @@ type AlbumListProps = {
 
 const AlbumList = ({ albums }: AlbumListProps) => {
   const [currentPage, setCurrentPage] = useState(1); //Start on page one
-  const [albumItemsPerPage, setAlbumsPerPage] = useState(5); //Default to five albums per page
+  //TODO: add in some buttons for setting Albums per page
+  const [albumItemsPerPage, setAlbumsPerPage] = useState(5);
 
-  // Calculate indices for slicing the albums array
+  //Calculate indices for slicing the albums array
   const indexOfLastAlbum = currentPage * albumItemsPerPage;
   const indexOfFirstAlbum = indexOfLastAlbum - albumItemsPerPage;
   const currentAlbumItemList = albums.slice(indexOfFirstAlbum, indexOfLastAlbum);
 
-  // Calculate page count
+  //Calculate page count
   const pageCount = Math.ceil(albums.length / albumItemsPerPage);
 
-  // Function to change page
+  //Function to change page
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
   const pageNumbers = Array.from({ length: pageCount }, (_, i) => i + 1);
 
   return (
     <div className="albumGroup">
+      <div className="albumPagination">
+        {pageNumbers.map((number) => (
+          <button key={number} onClick={() => paginate(number)}>
+            {number}
+          </button>
+        ))}
+      </div>
       <ul className="albumList">
         {currentAlbumItemList.map((album) => (
           <AlbumItem
