@@ -1,10 +1,29 @@
 /* APP STYLES */
+.linkContainer {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+}
+.albumAddNew__Container {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+}
+.albumAddNew__lbl {
+    font-weight: 900;
+}
+.albumList__Container {
+    display: flex;
+    justify-content: center;
+}
 .albumGroup {
-    max-width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center
+    align-items: center;
+    max-width: 640px;
+    border: solid 2px lightslategray;
+    padding: 1rem;
 }
 .albumList {
     list-style-type: none;
