@@ -1,15 +1,17 @@
 import React, { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useOutletContext } from 'react-router-dom';
 import axios from "axios";
 import { endpoints } from "../endpoints";
 
 type AlbumAddNewProps = {
   labels: AlbumLabels;
-  onAddNewAlbum: (newAlbum: Album) => void;
 };
 
-const AlbumAddNew = ({ labels, onAddNewAlbum }: AlbumAddNewProps) => {
+const AlbumAddNew = ({ labels }: AlbumAddNewProps) => {
   const navigate = useNavigate();
+  const context = useOutletContext<{ addAlbum: (newAlbum: NewAlbum) => Promise<void> }>();
+  const addAlbum = context.addAlbum;
+
   const [title, setTitle] = useState("");
   const [artist, setArtist] = useState("");
   const [releaseYear, setReleaseYear] = useState<number>(new Date().getFullYear());
@@ -23,7 +25,7 @@ const AlbumAddNew = ({ labels, onAddNewAlbum }: AlbumAddNewProps) => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    const newAlbum = {
+    const newAlbum: NewAlbum = {
       title,
       artist,
       releaseYear,
@@ -32,18 +34,10 @@ const AlbumAddNew = ({ labels, onAddNewAlbum }: AlbumAddNewProps) => {
     };
 
     try {
-      const response = await axios.post(
-        endpoints.allAlbums,
-        newAlbum
-      );
-      
-      onAddNewAlbum(response.data);
-      navigate(endpoints.appBase);
-
+      await addAlbum(newAlbum);
+      navigate('/');
     } catch (error) {
-      //TODO: Handle errors in a more user-interactive fashion (modal?)
       console.error("Error adding album", error);
-      
     }
   };
 

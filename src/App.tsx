@@ -26,13 +26,23 @@ const App = () => {
     fetchAlbums();
   }, []);
 
+  const addAlbum = async (newAlbum: NewAlbum) => {
+    try {
+      const response = await axios.post(endpoints.allAlbums, newAlbum);
+      setAlbums(prevAlbums => [...prevAlbums, response.data]);
+    } catch (error) {
+      console.error('Error adding album:', error);
+      //Handle errors...
+    }
+  };
+
   const deleteAlbum = async (albumId: number) => {
     try {
       await axios.delete(`${endpoints.allAlbums}/${albumId}`);
       setAlbums(prevAlbums => prevAlbums.filter(album => album.id !== albumId));
     } catch (error) {
       console.error('Error deleting album:', error);
-      //Handle error appropriately...
+      //Handle errors...
     }
   };
 
@@ -43,7 +53,7 @@ const App = () => {
           <Link to="/add-album">Add New Album</Link>
         </nav>
       </div>
-      <Outlet /> {/****Renders the matching child route****/}
+      <Outlet context={{ addAlbum }} /> {/****Renders the matching child route****/}
       <div className="albumList__Container">
         <AlbumList albums={albums} onDeleteAlbum={deleteAlbum}/>
       </div>

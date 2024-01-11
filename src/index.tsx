@@ -17,7 +17,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "add-album", // This will be the URL path to access AlbumAddNew
-        element: <AlbumAddNew labels={albumLabelList} onAddNewAlbum={() => ""} />,
+        element: <AlbumAddNew labels={albumLabelList} />,
       },
     ]
   },
