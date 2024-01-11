@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate, useOutletContext } from 'react-router-dom';
-import axios from "axios";
-import { endpoints } from "../endpoints";
 
 type AlbumAddNewProps = {
   labels: AlbumLabels;

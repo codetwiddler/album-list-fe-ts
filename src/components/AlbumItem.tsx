@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import AlbumRating from "./AlbumRating";
 import AlbumDeleteModal from "./AlbumDeleteModal";
-import axios from "axios";
 
 //Making Props a type for each component explicitly defines the
 //kind of data the component is designed to work with. Naming
@@ -37,10 +36,6 @@ const AlbumItem = ({
   
   const [isEditMode, setIsEditMode] = useState(false);
   const [editedAlbum, setEditedAlbum] = useState({ id, title, artist, releaseYear, genre, rating });
-
-  const handleEdit = () => {
-    setIsEditMode(true);
-  };
 
   const handleSave = () => {
     onUpdateAlbum(editedAlbum);
