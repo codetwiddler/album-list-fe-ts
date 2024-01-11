@@ -37,6 +37,7 @@ const AlbumItem = ({
   const [isEditMode, setIsEditMode] = useState(false);
   const [editedAlbum, setEditedAlbum] = useState({ id, title, artist, releaseYear, genre, rating });
 
+  //TODO: need some kind of validation here since I added it on the model in the API
   const handleSave = () => {
     onUpdateAlbum(editedAlbum);
     setIsEditMode(false);

@@ -20,6 +20,8 @@ const AlbumAddNew = ({ labels }: AlbumAddNewProps) => {
     navigate('/');
   };
 
+  //TODO: need some kind of validation not only here but also on the API for field data
+  //particularly year and rating since those can currently be whacky values.
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
