@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import AlbumItem from "./AlbumItem";
 import { albumLabelList } from "../modules";
-import axios from "axios"
-import { endpoints } from "../endpoints";
 
 type AlbumListProps = {
   albums: Album[];
@@ -26,6 +24,11 @@ const AlbumList = ({ albums, onDeleteAlbum, onUpdateAlbum  }: AlbumListProps) =>
   //Function to change page
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
   const pageNumbers = Array.from({ length: pageCount }, (_, i) => i + 1);
+
+  const handleAlbumsPerPageChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setAlbumsPerPage(Number(event.target.value));
+    setCurrentPage(1); //Reset to page 1 after changing Albums per page
+  };
 
   return (
     <div className="albumGroup">
@@ -53,6 +56,14 @@ const AlbumList = ({ albums, onDeleteAlbum, onUpdateAlbum  }: AlbumListProps) =>
             {number}
           </button>
         ))}
+      </div>
+      <div className="albumPerPageSelector">
+        <label htmlFor="albumsPerPage">Albums per page: </label>
+        <select id="albumsPerPage" onChange={handleAlbumsPerPageChange} value={albumItemsPerPage}>
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="20">20</option>
+        </select>
       </div>
     </div>
   );
