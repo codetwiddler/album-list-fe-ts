@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import AlbumRating from "./AlbumRating";
+import AlbumDeleteModal from "./AlbumDeleteModal";
+import axios from "axios";
 
 //Making Props a type for each component explicitly defines the
 //kind of data the component is designed to work with. Naming
@@ -12,6 +14,7 @@ type AlbumItemProps = {
   genre: string;
   rating?: number;
   labels: AlbumLabels; // Adding the labels prop
+  onDeleteAlbum: () => void;
 };
 
 //We no longer want to use React.FC<Props>. React 18 removes { children: ReactNode | ReactNode[] }
@@ -24,8 +27,12 @@ const AlbumItem = ({
   releaseYear,
   genre,
   rating,
-  labels
+  labels,
+  onDeleteAlbum
 }: AlbumItemProps) => {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const toggleModal = () => setModalIsOpen(!modalIsOpen);
+
   const albumItemViewingTemplate = (
     <div className="albumItemDetails">
       <div className="albumItemDetails__row">
@@ -44,7 +51,17 @@ const AlbumItem = ({
         <span className="albumItemDetails__row__lbl">{labels.genre}</span>
         <span className="albumItemDetails__row__txt">{genre}</span>
       </div>
+      <div className="albumItemDetails__btn__container">
+        <button className="albumItemDetails__btn__delete" onClick={toggleModal}>X</button>
+      </div>
       <AlbumRating rating={rating}/>
+      <AlbumDeleteModal
+            isOpen={modalIsOpen}
+            onRequestClose={toggleModal}
+            onConfirm={onDeleteAlbum}
+            albumTitle={title}
+            albumArtist={artist}
+        />
     </div>
   );
 

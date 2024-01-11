@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import AlbumItem from "./AlbumItem";
 import { albumLabelList } from "../modules";
+import axios from "axios"
+import { endpoints } from "../endpoints";
 
 type AlbumListProps = {
   albums: Album[];
+  onDeleteAlbum: (albumId: number) => void;
 };
 
-const AlbumList = ({ albums }: AlbumListProps) => {
+const AlbumList = ({ albums, onDeleteAlbum }: AlbumListProps) => {
   const [currentPage, setCurrentPage] = useState(1); //Start on page one
   //TODO: add in some buttons for setting Albums per page
   const [albumItemsPerPage, setAlbumsPerPage] = useState(5);
@@ -37,6 +40,7 @@ const AlbumList = ({ albums }: AlbumListProps) => {
           <AlbumItem
             key={album.id}
             labels={albumLabelList}
+            onDeleteAlbum={() => onDeleteAlbum(album.id)}
             {...album} //Spread operator props the rest of the album's data
           />
         ))}

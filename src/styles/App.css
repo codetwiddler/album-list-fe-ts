@@ -32,8 +32,9 @@
     max-width: 480px;
 }
 .albumItemDetails {
+    min-width: 320px;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     margin: 1rem 1rem;
     border: 2px solid #565656;
 }
@@ -43,6 +44,14 @@
     padding: 0.5rem 0.75rem;
     display:flex;
     align-items:center;
+}
+.albumItemDetails__btn__container {
+    margin-left: auto;
+    order: -1
+}
+.albumItemDetails__btn__delete {
+    position: absolute;
+    margin-left: -24px;
 }
 .albumItemDetails__row__lbl {
     font-weight: 900;

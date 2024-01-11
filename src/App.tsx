@@ -26,6 +26,16 @@ const App = () => {
     fetchAlbums();
   }, []);
 
+  const deleteAlbum = async (albumId: number) => {
+    try {
+      await axios.delete(`${endpoints.allAlbums}/${albumId}`);
+      setAlbums(prevAlbums => prevAlbums.filter(album => album.id !== albumId));
+    } catch (error) {
+      console.error('Error deleting album:', error);
+      //Handle error appropriately...
+    }
+  };
+
   return (
   <div className="App">
       <div className="linkContainer">
@@ -35,7 +45,7 @@ const App = () => {
       </div>
       <Outlet /> {/****Renders the matching child route****/}
       <div className="albumList__Container">
-        <AlbumList albums={albums} />
+        <AlbumList albums={albums} onDeleteAlbum={deleteAlbum}/>
       </div>
   </div>
   );
