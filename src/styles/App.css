@@ -37,6 +37,7 @@
     flex-direction: column;
     margin: 1rem 1rem;
     border: 2px solid #565656;
+    padding: 1rem;
 }
 .albumItemDetails__row {
     width: 100%;
@@ -45,9 +46,12 @@
     display:flex;
     align-items:center;
 }
-.albumItemDetails__btn__container {
+.albumItemDetails__btn__del-container {
     margin-left: auto;
     order: -1
+}
+.albumItemDetails__btn__edit-container {
+    text-align: center;
 }
 .albumItemDetails__btn__delete {
     position: absolute;

@@ -36,6 +36,16 @@ const App = () => {
     }
   };
 
+  const updateAlbum = async (albumId: number, updatedAlbum: Album) => {
+    try {
+      const response = await axios.patch(`${endpoints.allAlbums}/${albumId}`, updatedAlbum);
+      setAlbums(prevAlbums => prevAlbums.map(album => album.id === albumId ? response.data : album));
+    } catch (error) {
+      console.error('Error updating album:', error);
+      //Handle errors...
+    }
+  };
+
   const deleteAlbum = async (albumId: number) => {
     try {
       await axios.delete(`${endpoints.allAlbums}/${albumId}`);
@@ -55,7 +65,7 @@ const App = () => {
       </div>
       <Outlet context={{ addAlbum }} /> {/****Renders the matching child route****/}
       <div className="albumList__Container">
-        <AlbumList albums={albums} onDeleteAlbum={deleteAlbum}/>
+        <AlbumList albums={albums} onDeleteAlbum={deleteAlbum} onUpdateAlbum={updateAlbum}/>
       </div>
   </div>
   );

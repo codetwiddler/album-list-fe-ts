@@ -7,9 +7,10 @@ import { endpoints } from "../endpoints";
 type AlbumListProps = {
   albums: Album[];
   onDeleteAlbum: (albumId: number) => void;
+  onUpdateAlbum: (albumId: number, album: Album) => void;
 };
 
-const AlbumList = ({ albums, onDeleteAlbum }: AlbumListProps) => {
+const AlbumList = ({ albums, onDeleteAlbum, onUpdateAlbum  }: AlbumListProps) => {
   const [currentPage, setCurrentPage] = useState(1); //Start on page one
   //TODO: add in some buttons for setting Albums per page
   const [albumItemsPerPage, setAlbumsPerPage] = useState(5);
@@ -41,6 +42,7 @@ const AlbumList = ({ albums, onDeleteAlbum }: AlbumListProps) => {
             key={album.id}
             labels={albumLabelList}
             onDeleteAlbum={() => onDeleteAlbum(album.id)}
+            onUpdateAlbum={(updatedAlbum) => onUpdateAlbum(album.id, updatedAlbum)}
             {...album} //Spread operator props the rest of the album's data
           />
         ))}
