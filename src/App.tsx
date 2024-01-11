@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import './styles/app.css';
 import AlbumList from "./components/AlbumList";
 import { endpoints } from "./endpoints";
@@ -9,7 +9,10 @@ import axios from 'axios';
 //because the functions are immutable (although the values they hold probably won't be). Also prevents
 //anything weird happening from hoisting. Also no more 'this' complications.
 const App = () => {
+  const location = useLocation();
   const [albums, setAlbums] = useState<Album[]>([]);
+
+  const isAddAlbumRoute = location.pathname === endpoints.addAlbum;
 
   //TODO: deal with paginating via the API
   useEffect(() => {
@@ -58,11 +61,13 @@ const App = () => {
 
   return (
   <div className="App">
-      <div className="linkContainer">
-        <nav>
-          <Link to="/add-album">Add New Album</Link>
-        </nav>
-      </div>
+      {!isAddAlbumRoute && (
+        <div className="linkContainer">
+          <nav>
+            <Link to="/add-album">Add New Album</Link>
+          </nav>
+        </div>
+      )}
       <Outlet context={{ addAlbum }} /> {/****Renders the matching child route****/}
       <div className="albumList__Container">
         <AlbumList albums={albums} onDeleteAlbum={deleteAlbum} onUpdateAlbum={updateAlbum}/>
