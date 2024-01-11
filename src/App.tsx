@@ -17,6 +17,7 @@ const App = () => {
   //const [albums, setAlbums] = useState<Album[]>(fakes); //Use local fakes
   const [albums, setAlbums] = useState<Album[]>([]);
 
+  //TODO: deal with paginating via the API
   useEffect(() => {
     const fetchAlbums = async () => {
       try {
