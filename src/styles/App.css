@@ -25,6 +25,9 @@
     border: solid 2px lightslategray;
     padding: 1rem;
 }
+.albumPerPageSelector {
+    padding: 1rem;
+}
 .albumList {
     list-style-type: none;
     margin: 0;
